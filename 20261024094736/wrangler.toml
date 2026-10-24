@@ -1,0 +1,16 @@
+# 说明：这个文件只用于本地开发（wrangler pages dev）。
+# 正式站点（Cloudflare Pages）的绑定请在控制台里配置，见使用说明第 3 步。
+# 如果你不打算在本地跑，可以直接删掉这个文件。
+
+name = "yinglong-web"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"                 # 对应代码里的 env.DB
+database_name = "yinglong-posts"
+database_id = "把这里换成 D1 数据库 ID"
+
+[[kv_namespaces]]
+binding = "RATELIMIT"          # 对应代码里的 env.RATELIMIT
+id = "把这里换成 KV 命名空间 ID"

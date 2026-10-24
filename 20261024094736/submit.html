@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>投稿 · 应龙计算</title>
+<link rel="stylesheet" href="assets/site.css" />
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+  <header class="site-nav">
+    <a class="brand" href="index.html">
+      <svg viewBox="14.7 51.5 66 43.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="16.763189" y="53.569324" width="61.95092" height="39.357052" fill="#219912"/>
+        <path fill="#ffffff" d="M 16.763834,78.398313 V 68.2656 l 20.277833,-0.0031 7.579899,-14.692643 10.397298,-10e-4 5.438427,14.693677 18.255217,0.0031 0.001,10.133748 -25.929167,-0.214974 -3.175,-17.727084 -6.35,17.859375 z"/>
+        <path fill="#ffffff" d="m 30.261718,68.229426 -3.706233,-14.65957 h 7.640876 l 2.845305,14.693678 5.307608,24.663992 -9.057248,-7.94e-4 z"/>
+      </svg>
+      <span>应龙计算</span>
+    </a>
+    <nav class="nav-links">
+      <a href="posts.html">投稿列表</a>
+      <a href="submit.html" class="active">我要投稿</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">用户投稿</h1>
+    <p class="page-desc">
+      欢迎投稿文章或播客选题。提交后会进入审核队列，站长审核通过才会公开显示。<br>
+      请不要提交个人信息、广告或侵权内容。
+    </p>
+
+    <form class="form" id="postForm" novalidate>
+      <div class="field">
+        <div class="label">
+          <span>昵称</span>
+          <span class="optional">选填，留空则显示「匿名」</span>
+        </div>
+        <input type="text" name="nickname" maxlength="50" placeholder="你的名字" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <div class="label">
+          <span>标题</span>
+          <span class="counter" id="titleCount">0 / 100</span>
+        </div>
+        <input type="text" name="title" maxlength="100" placeholder="一句话说清主题" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <div class="label"><span>投稿类型</span></div>
+        <select name="type">
+          <option value="article">文章</option>
+          <option value="podcast">播客选题</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <div class="label">
+          <span>内容</span>
+          <span class="counter" id="contentCount">0 / 5000</span>
+        </div>
+        <textarea name="content" maxlength="5000" placeholder="正文内容，支持换行（10 - 5000 字）"></textarea>
+      </div>
+
+      <div class="field">
+        <!-- Turnstile：把 data-sitekey 换成你自己的 Site Key -->
+        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
+      </div>
+
+      <!-- 蜜罐字段：正常用户看不到，被填写就说明是机器人 -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+
+      <button class="btn" type="submit" id="submitBtn">提交投稿</button>
+      <div class="msg" id="msg"></div>
+    </form>
+  </main>
+
+  <footer class="site-footer">算力无限</footer>
+
+  <script src="assets/submit.js"></script>
+</body>
+</html>
